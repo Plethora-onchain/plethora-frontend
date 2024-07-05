@@ -4,7 +4,7 @@ import cardImage from "../../assets/images/card-image.png"
 
 export default function PostCard() {
   return (
-    <Card className="w-full md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+    <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
       <Image
         src={cardImage}
         alt="Blog post cover image"
