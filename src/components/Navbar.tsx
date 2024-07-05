@@ -2,6 +2,7 @@
 
 import { Gluten, Poppins } from "next/font/google";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 // import ConnectButton from "@/hooks/useConnectButton";
 
@@ -20,31 +21,31 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
             >
               Plethora
             </Link>
-            <div className="flex gap-6">
-            <Link
+            <div className="flex flex-row items-center gap-20">
+              <Link href="/" className={`text-xl font-medium text-[#7248EE]`}>
+                Discover
+              </Link>
+              <Button className="bg-[#EE7048] px-10 py-6 rounded-2xl text-white text-lg hover:bg-[#EE7048]">
+                Get Started
+              </Button>
+              {/* <Link
               href="/"
-              className={`text  text-[#7248EE]`}
+              className={`text-xl text-[#7248EE] ${poppins.className}`}
             >
               Plethora
             </Link>
             <Link
               href="/"
-              className={`text text-[#7248EE] ${poppins.className}`}
+              className={`text-xl text-[#7248EE] ${poppins.className}`}
             >
               Plethora
-            </Link>
-            <Link
+            </Link> */}
+              {/* <Link
               href="/"
-              className={`text text-[#7248EE] ${poppins.className}`}
+              className={`text-xl text-[#7248EE] ${poppins.className}`}
             >
               Plethora
-            </Link>
-            <Link
-              href="/"
-              className={`text text-[#7248EE] ${poppins.className}`}
-            >
-              Plethora
-            </Link>
+            </Link> */}
             </div>
             {/* <w3m-button/> */}
             {/* <ConnectButton /> */}
