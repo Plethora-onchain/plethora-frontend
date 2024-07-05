@@ -16,7 +16,7 @@ const TopComponent = () => {
           <br />
           Grow Your Audience
         </h1>
-        <p className={`text-2xl font-light mt-[24px]`}>
+        <p className={`text-2xl mt-[24px]`}>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam illum
           perferendis amet. Fugit{" "}
         </p>
