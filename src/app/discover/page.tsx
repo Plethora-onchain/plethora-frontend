@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar } from "@/components/Navbar";
+import { NavBar } from "@/components/shared/Navbar";
 import PostCard from "@/components/posts/PostsCard";
 import SeacrchBar from "@/components/shared/SearchBar";
 

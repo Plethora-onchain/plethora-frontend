@@ -1,9 +1,7 @@
-import { NavBar } from "@/components/Navbar";
-import Image from "next/image";
-import illutsration from "../assets/images/landing/landing-illustration.png";
-import { Button } from "@/components/ui/button";
+import { NavBar } from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer"
 import TopComponent from "@/components/landing/TopComponent";
-import SponsorsComponent from "@/components/landing/Sponsors";
+// import SponsorsComponent from "@/components/landing/Sponsors";
 import FeaturedPosts from "@/components/landing/FeaturedPosts";
 import WeHelpYouGrow from "@/components/landing/WeHelpYouGrow";
 
@@ -16,6 +14,7 @@ export default function Home() {
         <WeHelpYouGrow/>
         {/* <SponsorsComponent/> */}
         <FeaturedPosts/>
+        <Footer/>
       </div>
     </div>
   );
