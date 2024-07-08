@@ -72,5 +72,11 @@
     }
     body {
       @apply bg-background text-foreground;
+ 
+    }
+    input, textarea {
+      border: none !important;
+      outline: none !important;
+      border: 0;
     }
   }

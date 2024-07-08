@@ -2,7 +2,7 @@
 
 import { Gluten, Poppins } from "next/font/google";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 // import ConnectButton from "@/hooks/useConnectButton";
 
@@ -17,12 +17,15 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
           <div className="flex h-24 items-center justify-between">
             <Link
               href="/"
-              className={`text-3xl font-semibold text-[#EE7048] ${poppins.className}`}
+              className={`text-5xl font-bold text-[#EE7048]`}
             >
               Plethora
             </Link>
             <div className="flex flex-row items-center gap-20">
-              <Link href="/discover" className={`text-xl font-medium text-[#7248EE]`}>
+              <Link
+                href="/discover"
+                className={`text-xl font-medium text-[#7248EE]`}
+              >
                 Discover
               </Link>
               <Button className="bg-[#EE7048] px-10 py-6 rounded-2xl text-white text-lg hover:bg-[#EE7048]">

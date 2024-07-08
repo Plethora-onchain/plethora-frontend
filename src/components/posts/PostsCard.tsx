@@ -1,9 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image";
-import cardImage from "../../assets/images/card-image.png"
+import cardImage from "../../assets/images/card-image.png";
+import Link from "next/link";
+// import { useNavigate } from "next/navigation"
 
 export default function PostCard() {
+  // const navigate = useNavigate()
   return (
+    <Link href={`post/1`}>
     <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
       <Image
         src={cardImage}
@@ -23,5 +27,6 @@ export default function PostCard() {
         </p>
       </CardContent>
     </Card>
+    </Link>
   )
 }
