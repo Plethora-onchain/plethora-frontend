@@ -47,12 +47,12 @@ const TextContent = () => {
               height={100}
             />
 
-            <div>
+            <Link href="/user/untitled">
               <p className="text-lg"> {"untitled"} </p>
-              <Link className="text-gray-600 text-sm" href="/user/untitled">
+              <p className="text-gray-600 text-sm" >
                 @{"untitled"}{" "}
-              </Link>
-            </div>
+              </p>
+            </Link>
           </div>
           <Tip/>
         </div>
