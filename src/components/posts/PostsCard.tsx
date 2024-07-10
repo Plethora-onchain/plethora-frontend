@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function PostCard() {
   // const navigate = useNavigate()
   return (
-    <Link href={`post/1`}>
+    <Link href={`/post/1`}>
     <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
       <Image
         src={cardImage}
