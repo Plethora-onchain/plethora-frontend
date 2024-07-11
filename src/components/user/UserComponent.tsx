@@ -13,12 +13,12 @@ const UserComponent: React.FC<UserComponentProps> = () => {
     <div className="relative">
       <div
         className="mb-4 md:mb-0 w-full mx-auto relative"
-        style={{ height: "100px" }}
+        style={{ height: "150px" }}
       >
         <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-[#7248EE]"></div>
       </div>
 
-      <div className="absolute top-[50px] z-10 mx-auto w-full">
+      <div className="absolute top-[75px] z-10 mx-auto w-full">
         <div className="flex items-center justify-between w-10/12 mx-auto bg-[#f9f9f9] rounded-2xl px-6">
           <div className="text-center flex items-center">
             <Image

@@ -12,7 +12,7 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
   const { isDashboard } = props;
   return (
     <>
-      <div className="fixed top-0 z-50 w-full bg-white bg-opacity-70 backdrop-blur-lg backdrop-filter">
+      <div className="fixed top-0 z-50 w-full bg-transparent bg-opacity-70 backdrop-blur-lg backdrop-filter">
         <div className="mx-auto w-full px-4 sm:w-11/12 md:w-10/12">
           <div className="flex h-24 items-center justify-between">
             <Link
@@ -29,7 +29,7 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
                 Discover
               </Link>
               <Link
-                href="/discover"
+                href="/user/untitled"
                 className={`text-xl font-medium text-[#7248EE]`}
               >
                 Create
