@@ -29,7 +29,7 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
                 Discover
               </Link>
               <Link
-                href="/user/untitled"
+                href="/profile?create=true"
                 className={`text-xl font-medium text-[#7248EE]`}
               >
                 Create
