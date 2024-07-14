@@ -55,7 +55,7 @@ const UserInfo = () => {
             token(s)
           </div>
         </div>
-        <button className="w-[200px] h-12 rounded-lg bg-[#7248EE] text-white antialiased font-bold hover:bg-indigo-800 px-4">
+        <button className="w-[200px] h-12 rounded-lg bg-[#171717] text-white antialiased font-bold hover:bg-indigo-800 px-4">
           Follow
         </button>
       </div>

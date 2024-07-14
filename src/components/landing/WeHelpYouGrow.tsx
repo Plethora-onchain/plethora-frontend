@@ -5,7 +5,7 @@ import landingImg3 from "../../assets/images/growth.png";
 const WeHelpYouGrow = () => {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-[#F3F3F3]">
-      <h1 className="text-3xl text-center font-bold text-[#7248EE] tracking-tighter sm:text-4xl md:text-5xl mb-12 lg:mb-24">
+      <h1 className="text-3xl text-center font-bold text-[#171717] tracking-tighter sm:text-4xl md:text-5xl mb-12 lg:mb-24">
         We help you grow
       </h1>
       <div className="container px-4 md:px-6 mb-48">
@@ -19,7 +19,7 @@ const WeHelpYouGrow = () => {
             />
           </div>
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tighter mb-4 text-[#7248EE]">
+            <h1 className="text-4xl font-bold tracking-tighter mb-4 text-[#171717]">
               Monetize your way
             </h1>
             <p className="max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
@@ -43,7 +43,7 @@ const WeHelpYouGrow = () => {
             />
           </div>
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tighter mb-4 text-[#7248EE]">
+            <h1 className="text-4xl font-bold tracking-tighter mb-4 text-[#171717]">
               Optimized for growth
             </h1>
             <p className="max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">

@@ -26,7 +26,7 @@ const ProfileNav: React.FC<TabProps> = ({ activeTab, onTabChange }) => {
       <div className="flex justify-center gap-12 mx-auto">
         <span
           className={`text-gray-800 cursor-pointer pb-2 border-b-4 ${
-            activeTab === "posts" ? "border-[#7248EE]" : ""
+            activeTab === "posts" ? "border-[#171717]" : ""
           }`}
           onClick={() => onTabChange("posts")}
         >
@@ -34,7 +34,7 @@ const ProfileNav: React.FC<TabProps> = ({ activeTab, onTabChange }) => {
         </span>
         <p
           className={`text-gray-800 cursor-pointer pb-2 border-b-4 ${
-            activeTab === "create" ? "border-[#7248EE]" : ""
+            activeTab === "create" ? "border-[#171717]" : ""
           }`}
           onClick={() => onTabChange("create")}
         >
