@@ -23,12 +23,12 @@ const UserComponent = () => {
               Latest Posts
             </h3>
             <div className="mx-auto grid max-w-7xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-3">
+              {/* <PostCard />
               <PostCard />
               <PostCard />
               <PostCard />
               <PostCard />
-              <PostCard />
-              <PostCard />
+              <PostCard /> */}
             </div>
           </div>
         </div>
