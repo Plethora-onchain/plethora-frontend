@@ -8,10 +8,10 @@ import Create from "../create/Create";
 const ProfileComponent = () => {
   const [activeTab, setActiveTab] = useState<string>("posts");
   const searchParams = useSearchParams();
-  const create = searchParams.get("create");
+  const create = searchParams?.get("create");
 
   useEffect(() => {
-    const create = searchParams.get("create");
+    const create = searchParams?.get("create");
     if (create) {
       setActiveTab("create");
     }
@@ -37,12 +37,12 @@ const ProfileComponent = () => {
                 My Posts
               </h3>
               <div className="mx-auto grid max-w-7xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-3">
+                {/* <PostCard />
                 <PostCard />
                 <PostCard />
                 <PostCard />
                 <PostCard />
-                <PostCard />
-                <PostCard />
+                <PostCard /> */}
               </div>
             </div>
           ) : (

@@ -21,15 +21,28 @@ import Image from "next/image";
 import uploadIcon from "../../assets/icons/upload-icon.svg";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useCreatePost } from "@/hooks/useCreatePost";
+import { useLocalStorageBlog } from "@/hooks/useCreatePost";
+import { useAccount } from "@starknet-react/core";
+
+// import { useCreatePost } from "@/hooks/useCreatePost";
 
 const ImportPost = () => {
-  const createPost = useCreatePost();
+  const {  addPost, getPosts, updatePost, deletePost } = useLocalStorageBlog();
   const [platform, setPlatform] = useState("");
   const [post_url, setPostUrl] = useState("");
+  const { address } = useAccount();
 
   const handleSubmit = async () => {
-    await createPost(post_url, platform);
+    try {
+      const result = await addPost({
+        post_url: post_url,
+        platform: platform,
+        creator_address: address      
+      });
+      console.log("Post added:", result);
+    } catch (error) {
+      console.error("Error adding post:", error);
+    }
   };
   const handlePlatformChange = (value:any) => {
     setPlatform(value);

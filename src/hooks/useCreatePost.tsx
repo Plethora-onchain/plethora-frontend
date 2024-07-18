@@ -1,27 +1,59 @@
-// import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import { Post } from "@/interfaces/Post";
 
-export const useCreatePost = () => {
-//   const router = useRouter();
+export function useLocalStorageBlog() {
+  const [initialized, setInitialized] = useState(false);
 
-  const createPost = async (post_url:string, platform:string, title?:string, content?:any) => {
-    const response = await fetch('/api/addPost', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, content, post_url, platform }),
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-    //   router.push('/');
-    console.log("successful");
-    
-    } else {
-      alert('Error adding post');
+  useEffect(() => {
+    // Initialize local storage if it doesn't exist
+    if (!localStorage.getItem('posts')) {
+      localStorage.setItem('posts', JSON.stringify([]));
     }
+    setInitialized(true);
+  }, []);
+
+  const addPost = async (postData: Omit<Post, 'id' | 'createdAt'>): Promise<Post> => {
+    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+    const newPost: Post = {
+      ...postData,
+      id: Date.now().toString(),
+      createdAt: Date.now()
+    };
+    posts.push(newPost);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    return newPost;
   };
 
-  return createPost;
-};
+  const getPosts = async (): Promise<Post[]> => {
+    return JSON.parse(localStorage.getItem('posts') || '[]');
+  };
+
+  const updatePost = async (id: string, postData: Partial<Post>): Promise<Post | null> => {
+    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+    const index = posts.findIndex((post: Post) => post.id === id);
+    if (index !== -1) {
+      posts[index] = { ...posts[index], ...postData };
+      localStorage.setItem('posts', JSON.stringify(posts));
+      return posts[index];
+    }
+    return null;
+  };
+
+  const deletePost = async (id: string): Promise<boolean> => {
+    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+    const filteredPosts = posts.filter((post: Post) => post.id !== id);
+    if (filteredPosts.length !== posts.length) {
+      localStorage.setItem('posts', JSON.stringify(filteredPosts));
+      return true;
+    }
+    return false;
+  };
+
+  return {
+    initialized,
+    addPost,
+    getPosts,
+    updatePost,
+    deletePost,
+  };
+}
