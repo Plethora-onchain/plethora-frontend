@@ -8,7 +8,7 @@ import Create from "../create/Create";
 const ProfileComponent = () => {
   const [activeTab, setActiveTab] = useState<string>("posts");
   const searchParams = useSearchParams();
-  const create = searchParams?.get("create");
+  // const create = searchParams?.get("create");
 
   useEffect(() => {
     const create = searchParams?.get("create");
