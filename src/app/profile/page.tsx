@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { NavBar } from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import ProfileComponent from "@/components/profile/ProfileComponent";
@@ -10,7 +10,9 @@ export default function Profile() {
       {/* <Nav /> */}
       <NavBar />
       <div className="main-layout pt-24">
+        <Suspense>
         <ProfileComponent />
+        </Suspense>
       </div>
       {/* <div className="absolute w-full bottom-0">
   <Footer/>

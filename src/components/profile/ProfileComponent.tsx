@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React, { Suspense, useEffect, useState } from "react";
 import PostCard from "../posts/PostsCard";
 import ProfileTab from "./ProfileTab";
 import { useSearchParams } from "next/navigation";
@@ -26,7 +27,7 @@ const ProfileComponent = () => {
         >
           <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-[#171717]"></div>
         </div>
-
+        <Suspense>
         <div className="absolute top-[75px] z-10 mx-auto w-full">
           <ProfileTab onTabChange={setActiveTab} activeTab={activeTab} />
 
@@ -51,6 +52,7 @@ const ProfileComponent = () => {
             </div>
           )}
         </div>
+        </Suspense>
       </div>
     </>
   );
