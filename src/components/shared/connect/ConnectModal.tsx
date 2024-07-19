@@ -25,9 +25,9 @@ export default function ConnectModalParent() {
         Connect Wallet
       </DialogTrigger>
       <DialogContent className="max-w-[300px]">
-        <DialogHeader className="font-semibold">
-        Connect Wallet
-        </DialogHeader>
+      <h1 className="text-lg font-medium text-center">
+          Connect Wallet
+        </h1>
         <div className="flex flex-col items-center justify-center gap-8">
         {connectors.map((connector: Connector) => {
           return (
