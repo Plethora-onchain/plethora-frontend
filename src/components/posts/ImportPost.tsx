@@ -27,7 +27,7 @@ import { useAccount } from "@starknet-react/core";
 // import { useCreatePost } from "@/hooks/useCreatePost";
 
 const ImportPost = () => {
-  const {  addPost, getPosts, updatePost, deletePost } = useLocalStorageBlog();
+  const { addPost, getPosts, updatePost, deletePost } = useLocalStorageBlog();
   const [platform, setPlatform] = useState("");
   const [post_url, setPostUrl] = useState("");
   const { address } = useAccount();
@@ -37,14 +37,14 @@ const ImportPost = () => {
       const result = await addPost({
         post_url: post_url,
         platform: platform,
-        creator_address: address      
+        creator_address: address,
       });
       console.log("Post added:", result);
     } catch (error) {
       console.error("Error adding post:", error);
     }
   };
-  const handlePlatformChange = (value:any) => {
+  const handlePlatformChange = (value: any) => {
     setPlatform(value);
   };
   return (
@@ -58,13 +58,14 @@ const ImportPost = () => {
         </span>
       </DialogTrigger>
       <DialogContent className="rounded-[15px]">
-        <DialogHeader>
-          <DialogTitle>Import Post</DialogTitle>
-          <DialogDescription>
-            Import your content from an already existing platform. Enter the
-            link to the content and the platform
-          </DialogDescription>
-        </DialogHeader>
+        <h1 className="text-lg md:text-[22px] font-bold">
+          Import Your Content with Ease
+        </h1>
+        <p className="text-xs md:text-sm text-muted-foreground -mt-2">
+          Seamlessly bring your content from other platforms into our app. Just
+          enter the link to your content and the platform it&rsquo;s hosted on,
+          and we&apos;ll take care of the rest!
+        </p>
         <div className="grid gap-4 py-4">
           <div className="items-center">
             <label htmlFor="name" className="text-right mb-3">
@@ -92,21 +93,22 @@ const ImportPost = () => {
               id="username"
               defaultValue=""
               className="col-span-3 mt-3 border-gray-500 rounded-[10px]"
-              onChange={(e)=>{
-                setPostUrl(e.target.value)
+              onChange={(e) => {
+                setPostUrl(e.target.value);
               }}
             />
           </div>
         </div>
-        <DialogFooter>
-          <Button type="submit" className="rounded-[10px]" onClick={()=>{
-            handleSubmit();
-            console.log("working");
-            
-          }}>
+          <Button
+            type="submit"
+            className="w-1/2 mx-auto rounded-[10px]"
+            onClick={() => {
+              handleSubmit();
+              console.log("working");
+            }}
+          >
             Import
           </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
