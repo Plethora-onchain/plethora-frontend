@@ -1,25 +1,30 @@
 // useHashnodeArticleDetails.ts
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface HashnodeArticleDetails {
   title: string;
   brief: string;
+  content: string;
   coverImage: string;
-  dateAdded: string;
+  publishedAt: string;
   author: {
     name: string;
     username: string;
   };
 }
 
-export function useHashnodeArticleDetails(articleUrl: string | null) {
-  const [articleDetails, setArticleDetails] = useState<HashnodeArticleDetails | null>(null);
+export function useHashnodeArticleDetails(
+  articleUrl: string | null,
+  platform: string | null
+) {
+  const [hashnodeDetails, setHashnodeArticleDetails] =
+    useState<HashnodeArticleDetails | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!articleUrl) {
-      setArticleDetails(null);
+    if (!articleUrl || platform !== "hashnode") {
+      setHashnodeArticleDetails(null);
       return;
     }
 
@@ -30,75 +35,88 @@ export function useHashnodeArticleDetails(articleUrl: string | null) {
       try {
         const { slug, host } = extractSlugAndHost(articleUrl);
         if (!slug || !host) {
-          throw new Error('Invalid Hashnode article URL');
+          throw new Error("Invalid Hashnode article URL");
         }
 
         const query = `
-          query GetArticle($slug: String!, $host: String!) {
-            post(slug: $slug, hostname: $host) {
-              title
-              brief
-              coverImage
-              dateAdded
-              author {
-                name
-                username
+          query GetArticle($host: String!, $slug: String!) {
+            publication(host: $host) {
+              post(slug: $slug) {
+                title
+                brief
+                coverImage {
+                  url
+                }
+                content {
+                  markdown
+                }
+                publishedAt
+                author {
+                  name
+                  username
+                }
               }
             }
           }
         `;
 
-        const response = await fetch('https://api.hashnode.com', {
-          mode:'cors',
-          method: 'POST',
+        const response = await fetch("https://gql.hashnode.com/", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             query,
-            variables: { slug, host },
+            variables: { host, slug },
           }),
         });
 
         if (!response.ok) {
-          throw new Error('Failed to fetch article details');
+          throw new Error("Failed to fetch article details");
         }
 
         const data = await response.json();
-        const post = data.data.post;
+
+        const post = data.data.publication.post;
 
         if (post) {
-          setArticleDetails({
+          setHashnodeArticleDetails({
             title: post.title,
             brief: post.brief,
-            coverImage: post.coverImage,
-            dateAdded: post.dateAdded,
+            content: post.content,
+            coverImage: post.coverImage.url,
+            publishedAt: post.publishedAt,
             author: post.author,
           });
         } else {
-          throw new Error('Article not found');
+          throw new Error("Article not found");
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred"
+        );
       } finally {
         setLoading(false);
       }
     };
 
     fetchArticleDetails();
-  }, [articleUrl]);
+  }, [articleUrl, platform]);
 
-  return { articleDetails, loading, error };
+  return { hashnodeDetails, loading, error };
 }
 
-function extractSlugAndHost(url: string): { slug: string | null; host: string | null } {
+function extractSlugAndHost(url: string): {
+  slug: string | null;
+  host: string | null;
+} {
   try {
     const parsedUrl = new URL(url);
-    const pathParts = parsedUrl.pathname.split('/').filter(Boolean);
-    
-    return { 
+    const pathParts = parsedUrl.pathname.split("/").filter(Boolean);
+
+    return {
       host: parsedUrl.hostname,
-      slug: pathParts[pathParts.length - 1]
+      slug: pathParts[pathParts.length - 1],
     };
   } catch {
     return { slug: null, host: null };

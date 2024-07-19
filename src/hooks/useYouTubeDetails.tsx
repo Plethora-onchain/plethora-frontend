@@ -9,13 +9,13 @@ interface YouTubeVideoDetails {
 
 const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_DATA_API;
 
-export function useYouTubeDetails(videoUrl: string | null) {
+export function useYouTubeDetails(videoUrl:string|null, platform:string|null) {
   const [videoDetails, setVideoDetails] = useState<YouTubeVideoDetails | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!videoUrl) {
+    if (!videoUrl || platform !== "youtube") {
       setVideoDetails(null);
       return;
     }
@@ -26,7 +26,7 @@ export function useYouTubeDetails(videoUrl: string | null) {
 
       try {
         const videoId = extractVideoId(videoUrl);
-        if (!videoId) {
+        if (!videoId || platform !== "youtube") {
           throw new Error('Invalid YouTube URL');
         }
 
@@ -59,7 +59,7 @@ export function useYouTubeDetails(videoUrl: string | null) {
     };
 
     fetchVideoDetails();
-  }, [videoUrl]);
+  }, [videoUrl, platform]);
 
   return { videoDetails, loading, error };
 }

@@ -10,6 +10,14 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'i.ytimg.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'cdn.hashnode.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn-images-1.medium.com',
+            },
         ],
     },
     async rewrites() {

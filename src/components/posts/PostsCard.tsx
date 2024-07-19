@@ -7,15 +7,15 @@ import Link from "next/link";
 import { Post } from "@/interfaces/Post";
 import { useYouTubeDetails } from "@/hooks/useYouTubeDetails";
 import { useHashnodeArticleDetails } from "@/hooks/useHashnodeDetails";
+import { useMediumArticleDetails } from "@/hooks/useMediumDetails";
 
 export default function PostCard({ post }: { post: Post }) {
-  const { videoDetails, loading, error } = useYouTubeDetails(
-    post?.post_url || null
-  );
 
-  const {articleDetails} = useHashnodeArticleDetails(post?.post_url || null)
+  const {videoDetails} = useYouTubeDetails(post?.post_url || "", post?.platform ||"");
+  const {hashnodeDetails} = useHashnodeArticleDetails(post?.post_url || "", post?.platform ||"");
+  const {mediumArticleDetails} = useMediumArticleDetails(post.post_url||"", post?.platform||"");
 
-  if (post && post.platform === "youtube") {
+  if (post.platform === "youtube") {
     return (
       <Link href={`/post/1`}>
         <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
@@ -41,12 +41,12 @@ export default function PostCard({ post }: { post: Post }) {
     );
   }
 
-  if (post && post.platform === "hashnode") {
+  if (post.platform === "hashnode") {
     return (
       <Link href={`/post/1`}>
         <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
           <Image
-            src={articleDetails?.coverImage || cardImage}
+            src={hashnodeDetails?.coverImage || cardImage}
             alt="Blog post cover image"
             width={400}
             height={100}
@@ -57,16 +57,40 @@ export default function PostCard({ post }: { post: Post }) {
               {/* <CalendarDaysIcon className="w-4 h-4" /> */}
               <span>June 29, 2024</span>
             </div>
-            <h3 className="text-xl font-bold">{articleDetails?.title}</h3>
+            <h3 className="text-xl font-bold">{hashnodeDetails?.title}</h3>
             <p className="text-muted-foreground">
-              {articleDetails?.brief.slice(0, 150)+"..."}
+              {hashnodeDetails?.brief.slice(0, 150)+"..."}
             </p>
           </CardContent>
         </Card>
       </Link>
     );
   }
-  // const navigate = useNavigate()
+  if (post.platform === "medium") {
+    return (
+      <Link href={`/post/1`}>
+        <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+          <Image
+            src={mediumArticleDetails?.thumbnail || cardImage}
+            alt="Blog post cover image"
+            width={400}
+            height={100}
+            className="rounded-t-2xl object-cover w-full"
+          />
+          <CardContent className="p-6 pt-3 space-y-3">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              {/* <CalendarDaysIcon className="w-4 h-4" /> */}
+              <span>June 29, 2024</span>
+            </div>
+            <h3 className="text-xl font-bold">{mediumArticleDetails?.title}</h3>
+            <p className="text-muted-foreground">
+              {mediumArticleDetails?.description.slice(0, 150)+"..."}
+            </p>
+          </CardContent>
+        </Card>
+      </Link>
+    );
+  }
   return (
     <Link href={`/post/1`}>
       <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
