@@ -17,7 +17,7 @@ export default function PostCard({ post }: { post: Post }) {
 
   if (post.platform === "youtube") {
     return (
-      <Link href={`/post/1`}>
+      <Link href={`/post/${post.id}`}>
         <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
           <Image
             src={videoDetails?.thumbnailUrl || cardImage}
@@ -43,7 +43,7 @@ export default function PostCard({ post }: { post: Post }) {
 
   if (post.platform === "hashnode") {
     return (
-      <Link href={`/post/1`}>
+      <Link href={`/post/${post.id}`}>
         <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
           <Image
             src={hashnodeDetails?.coverImage || cardImage}
@@ -68,7 +68,7 @@ export default function PostCard({ post }: { post: Post }) {
   }
   if (post.platform === "medium") {
     return (
-      <Link href={`/post/1`}>
+      <Link href={`/post/${post.id}`}>
         <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
           <Image
             src={mediumArticleDetails?.thumbnail || cardImage}
@@ -92,7 +92,7 @@ export default function PostCard({ post }: { post: Post }) {
     );
   }
   return (
-    <Link href={`/post/1`}>
+    <Link href={`/post/${post.id}`}>
       <Card className="w-full  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
         <Image
           src={cardImage}

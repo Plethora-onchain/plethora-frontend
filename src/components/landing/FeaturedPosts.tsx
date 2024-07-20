@@ -28,8 +28,7 @@ const FeaturedPosts = () => {
         <h2 className="text-4xl font-semibold text-white">Featured Posts</h2>
         <div className="flex flex-col md:flex-row mt-8 mx-auto gap-6 lg:gap-10">
           {(posts &&
-            posts?.length > 0 &&
-            posts?.map((post) => <PostCard key={post.id} post={post} />)) || (
+            posts?.slice(0, 4).map((post) => <PostCard key={post.id} post={post} />)) || (
             <p>Loading...</p>
           )}
         </div>
