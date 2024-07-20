@@ -7,6 +7,7 @@ interface MediumArticleDetails {
   pubDate: string;
   author: string;
   link: string;
+  content: string;
 }
 
 export function useMediumArticleDetails(

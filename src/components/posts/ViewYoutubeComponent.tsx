@@ -11,7 +11,6 @@ const ViewYoutubeComponent = ({ post }: { post: Post }) => {
     setIsExpanded(!isExpanded);
   };
 
-  console.log(post);
   const { videoDetails } = useYouTubeDetails(
     post?.post_url || "",
     post?.platform || ""

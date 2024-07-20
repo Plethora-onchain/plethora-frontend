@@ -48,7 +48,7 @@ export function useHashnodeArticleDetails(
                   url
                 }
                 content {
-                  markdown
+                  html
                 }
                 publishedAt
                 author {

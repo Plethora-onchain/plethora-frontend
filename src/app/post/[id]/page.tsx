@@ -37,10 +37,10 @@ export default function SinglePost() {
     <div>
       <NavBar />
       <div className="main-layout pt-36">
-        <div className="w-10/12 mx-auto">
+        <div className="mx-auto">
           {post?.platform === "youtube" && <ViewYoutubeComponent post={post}/>}
-          {post?.platform === "medium" && <ViewMediumComponent />}
-          {post?.platform === "hashnode" && <ViewHashnodeComponent />}
+          {post?.platform === "medium" && <ViewMediumComponent post={post} />}
+          {post?.platform === "hashnode" && <ViewHashnodeComponent post={post}/>}
         </div>
       </div>
     </div>
