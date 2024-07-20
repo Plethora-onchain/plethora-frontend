@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white ">
+    <footer className="bg-white">
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8  border-t">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
@@ -112,7 +112,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
             <div>
-              <p className="font-medium text-[#7248EE]">Company</p>
+              <p className="font-medium text-[#171717]">Company</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
@@ -142,7 +142,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="font-medium text-[#7248EE]">Helpful Links</p>
+              <p className="font-medium text-[#171717]">Helpful Links</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
@@ -172,7 +172,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="font-medium text-[#7248EE]">Legal</p>
+              <p className="font-medium text-[#171717]">Legal</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>

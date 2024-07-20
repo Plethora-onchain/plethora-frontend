@@ -1,9 +1,28 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { NavBar } from "@/components/shared/Navbar";
 import PostCard from "@/components/posts/PostsCard";
 import SeacrchBar from "@/components/shared/SearchBar";
+import { useLocalStorageBlog } from "@/hooks/useCreatePost";
+import { Post } from "@/interfaces/Post";
 
 function Discover() {
+  const { getPosts } = useLocalStorageBlog();
+  const [posts, setPosts] = useState<Post[]>();
+
+  function fetchPosts() {
+    getPosts()
+      .then((response) => {
+        setPosts(response);
+      })
+      .catch((error) => {
+        console.error("Error getting posts:", error);
+      });
+  }
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <div>
       <NavBar />
@@ -11,11 +30,10 @@ function Discover() {
         <div className="main-layout__top"></div>
         <div className="main-layout__main">
           {/* <h1 className="text-center text-4xl mb-3 text-white">News</h1> */}
-         <div className="flex justify-center mb-8">
-         <SeacrchBar/>
-         </div>
+          <div className="flex justify-center mb-8">
+            <SeacrchBar />
+          </div>
           <div className="flex justify-center">
-       
             <span className="inline-block px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-full text-md font-semibold text-gray-700 mr-2 mb-2 pointer">
               All
             </span>
@@ -28,12 +46,11 @@ function Discover() {
           </div>
 
           <div className="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard /> 
-            <PostCard /> 
-            <PostCard />
+          {
+           posts && posts?.length> 0 && posts?.map((post) => (
+              <PostCard key={post.id} post={post} />
+            )) || <p>Loading...</p>
+          }
           </div>
         </div>
       </div>

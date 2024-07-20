@@ -9,9 +9,9 @@ import screen from "../../assets/images/landing/screen.png";
 const TopComponent = () => {
   return (
     <div className="pt-36 px-4 sm:w-11/12 md:w-10/12 mx-auto flex justify-between">
-      <div className="text-[#7248EE]">
+      <div className="text-[#171717]">
         <p className="">lorem text</p>
-        <h1 className="text-[56px] font-extrabold text-[#7248EE]">
+        <h1 className="text-[56px] font-extrabold text-[#171717]">
           Monetize Your Passion,
           <br />
           Grow Your Audience
