@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const TailwindStyledContent = ({ content }: { content: any }) => {
   const options = {
-    replace: (domNode) => {
+    replace: (domNode:any) => {
       if (domNode.type === "tag") {
         let newProps = { ...domNode.attribs };
 
