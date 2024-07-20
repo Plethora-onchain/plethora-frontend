@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 interface HashnodeArticleDetails {
   title: string;
   brief: string;
-  content: string;
+  content: object;
   coverImage: string;
   publishedAt: string;
   author: {

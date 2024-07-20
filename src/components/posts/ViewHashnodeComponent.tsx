@@ -67,7 +67,7 @@ const ViewHashnodeComponent = ({ post }: { post: Post }) => {
           </h1>
 
           <div className="mb-10">
-          <TailwindStyledContent content={hashnodeDetails?.content?.html || ""} />
+          <TailwindStyledContent content={(hashnodeDetails?.content as { html: string })?.html || ""} />
         
           </div>
 
