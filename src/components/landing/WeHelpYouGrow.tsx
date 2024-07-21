@@ -23,10 +23,11 @@ const WeHelpYouGrow = () => {
               Monetize your way
             </h1>
             <p className="max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
-              Set up subscriptions, rentals, or one-time buys for access to your
-              VOD and live streams. Create exclusive experiences for your
-              subscribers with coupons and promotions. One predictable fee,
-              transparent pricing, and same-day setup.
+              Our platform is designed to empower creators like you, providing
+              the tools and resources needed to monetize your work effectively.
+              From secure payment processing to audience engagement strategies,
+              we&apos;ve got you covered. Connect with fans, offer exclusive
+              content, and build a sustainable income doing what you love.
             </p>
           </div>
         </div>
@@ -47,11 +48,14 @@ const WeHelpYouGrow = () => {
               Optimized for growth
             </h1>
             <p className="max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
-              The Screeno ecosystem is designed to help you generate profit. Set
-              up complete sales and marketing funnels with ease using the
-              Screeno built-in marketing tools and integrations. Generate leads
-              and convert your audience into paying subscribers, at no extra
-              cost.
+              At its core, our blockchain-based content creation platform is
+              crafted to cultivate a dynamic ecosystem where creativity
+              flourishes and innovation is celebrated. By harnessing the
+              advantages of blockchain technology, we aspire to reshape the
+              content creation and monetization landscape, empowering creators
+              like you to soar to unprecedented levels of success. Join us in
+              this exciting journey, where your passion for creation is met with
+              the tools and support needed to thrive in the digital age.
             </p>
           </div>
         </div>
