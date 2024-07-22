@@ -26,9 +26,9 @@ const FeaturedPosts = () => {
     <div className="bg-[#171717] ">
       <div className="w-full px-4 py-12 sm:w-11/12 md:w-10/12 mx-auto">
         <h2 className="text-4xl font-semibold text-white">Featured Posts</h2>
-        <div className="flex flex-col md:flex-row mt-8 mx-auto gap-6 lg:gap-10">
+        <div className="flex flex-col md:flex-row mt-8 mx-auto gap-3 lg:gap-8">
           {(posts &&
-            posts?.slice(0, 4).map((post) => <PostCard key={post.id} post={post} />)) || (
+            posts?.slice(0, 3).map((post) => <PostCard key={post.id} post={post} />)) || (
             <p>Loading...</p>
           )}
         </div>

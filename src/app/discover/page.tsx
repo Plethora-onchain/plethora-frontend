@@ -45,7 +45,7 @@ function Discover() {
             </span>
           </div>
 
-          <div className="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
+          <div className="mx-auto grid max-w-7xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
           {
            posts && posts?.length> 0 && posts?.map((post) => (
               <PostCard key={post.id} post={post} />

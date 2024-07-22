@@ -43,21 +43,24 @@ const ViewHashnodeComponent = ({ post }: { post: Post }) => {
         </div>
 
         <div className="w-full max-w-screen-md mx-auto flex justify-between items-center">
-          <div className="flex mt-3">
-            <Image
-              src={
-                "https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
-              }
-              className="h-10 w-10 rounded-full mr-2 object-cover"
-              alt=""
-              width={100}
-              height={100}
-            />
+          <div>
+            <p className="text-sm mt-4 ml-1 text-gray-600">29th June 2024</p>
+            <div className="flex mt-3">
+              <Image
+                src={
+                  "https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
+                }
+                className="h-14 w-14 rounded-full mr-2 object-cover"
+                alt=""
+                width={100}
+                height={100}
+              />
 
-            <Link href="/user/untitled">
-              <p className="text-lg"> {"untitled"} </p>
-              <p className="text-gray-600 text-sm">@{"untitled"} </p>
-            </Link>
+              <Link href="/user/untitled">
+                <p className="text-lg"> {"untitled"} </p>
+                <p className="text-gray-600 text-sm">@{"untitled"} </p>
+              </Link>
+            </div>
           </div>
           <Tip />
         </div>
@@ -67,8 +70,11 @@ const ViewHashnodeComponent = ({ post }: { post: Post }) => {
           </h1>
 
           <div className="mb-10">
-          <TailwindStyledContent content={(hashnodeDetails?.content as { html: string })?.html || ""} />
-        
+            <TailwindStyledContent
+              content={
+                (hashnodeDetails?.content as { html: string })?.html || ""
+              }
+            />
           </div>
 
           {/* <div className="mb-10">

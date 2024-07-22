@@ -9,6 +9,7 @@ import { useLocalStorageBlog } from "@/hooks/useCreatePost";
 import { Post } from "@/interfaces/Post";
 import ViewMediumComponent from "@/components/posts/ViewMediumComponent";
 import ViewHashnodeComponent from "@/components/posts/ViewHashnodeComponent";
+import Footer from "@/components/shared/Footer";
 
 export default function SinglePost() {
   const params = useParams();
@@ -43,6 +44,7 @@ export default function SinglePost() {
           {post?.platform === "hashnode" && <ViewHashnodeComponent post={post}/>}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

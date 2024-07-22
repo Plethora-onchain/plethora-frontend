@@ -25,13 +25,13 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
             <div className="flex flex-row items-center gap-20">
               <Link
                 href="/discover"
-                className={`text-xl font-medium text-[#171717]`}
+                className={`text-xl font-medium text-[#171717] hover:text-indigo-600`}
               >
                 Discover
               </Link>
               <Link
                 href="/profile?create=true"
-                className={`text-xl font-medium text-[#171717]`}
+                className={`text-xl font-medium text-[#171717] hover:text-indigo-600`}
               >
                 Create
               </Link>
