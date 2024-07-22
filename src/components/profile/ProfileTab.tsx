@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import React from "react";
 import Image from "next/image";
+import EditProfile from "./EditProfile";
 interface TabProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
@@ -41,9 +42,7 @@ const ProfileNav: React.FC<TabProps> = ({ activeTab, onTabChange }) => {
           Create
         </p>
       </div>
-      <button className="w-[200px] h-12 rounded-lg bg-[#EE7048] text-white antialiased font-bold hover:bg-indigo-800 px-4">
-        Edit Profile
-      </button>
+      <EditProfile />
     </div>
   );
 };
