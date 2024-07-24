@@ -19,9 +19,9 @@ const ProfileComponent = () => {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative bg-white">
         <div
-          className="mb-4 md:mb-0 w-full mx-auto relative"
+          className="mb-4 md:mb-0 w-full mx-auto "
           style={{ height: "150px" }}
         >
           <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-[#171717]"></div>

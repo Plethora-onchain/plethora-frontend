@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import TextContent from "@/components/posts/TextContent";
 import ViewYoutubeComponent from "@/components/posts/ViewYoutubeComponent";
-import { useLocalStorageBlog } from "@/hooks/useCreatePost";
+import { usePostController } from "@/hooks/usePostController";
 import { Post } from "@/interfaces/Post";
 import ViewMediumComponent from "@/components/posts/ViewMediumComponent";
 import ViewHashnodeComponent from "@/components/posts/ViewHashnodeComponent";
@@ -13,7 +13,7 @@ import Footer from "@/components/shared/Footer";
 
 export default function SinglePost() {
   const params = useParams();
-  const { getPosts } = useLocalStorageBlog();
+  const { getPosts } = usePostController();
   const [post, setPost] = useState<Post>();
 
   function fetchSinglePost() {

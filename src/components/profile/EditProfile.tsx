@@ -13,7 +13,7 @@ const EditProfile = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="inline-flex items-center gap-2 h-10 rounded-lg bg-[#EE7048] text-white antialiased text-sm font-bold hover:bg-indigo-800 px-4">
+      <DialogTrigger className="inline-flex items-center gap-2 h-10 rounded-lg bg-[#171717] text-white antialiased text-sm font-bold hover:bg-indigo-800 px-5">
         Edit Profile
       </DialogTrigger>
       <DialogContent>

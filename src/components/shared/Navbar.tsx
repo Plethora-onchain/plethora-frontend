@@ -14,7 +14,7 @@ export const NavBar = (props: { isDashboard?: boolean }) => {
   return (
     <>
       <div className="fixed top-0 z-50 w-full bg-transparent bg-opacity-70 backdrop-blur-lg backdrop-filter">
-        <div className="mx-auto w-full px-4 sm:w-11/12 md:w-10/12">
+        <div className="mx-auto w-full px-4 max-w-screen-xl">
           <div className="flex h-24 items-center justify-between">
             <Link
               href="/"

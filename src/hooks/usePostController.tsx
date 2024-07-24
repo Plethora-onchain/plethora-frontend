@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Post } from "@/interfaces/Post";
 
-export function useLocalStorageBlog() {
+export function usePostController() {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
