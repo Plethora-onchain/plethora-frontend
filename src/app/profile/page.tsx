@@ -6,17 +6,17 @@ import ProfileComponent from "@/components/profile/ProfileComponent";
 
 export default function Profile() {
   return (
-    <div className="relative min-h-[100vh]">
+    <div className="relative">
       {/* <Nav /> */}
       <NavBar />
-      <div className="main-layout pt-24">
+      <div className="main-layout pt-24 h-[150vh]">
         <Suspense>
-        <ProfileComponent />
+          <ProfileComponent />
         </Suspense>
       </div>
-      {/* <div className="absolute w-full bottom-0">
-  <Footer/>
-  </div> */}
+      <div className=" w-full bottom-0">
+        <Footer />
+      </div>
     </div>
   );
 }

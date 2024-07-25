@@ -6,13 +6,13 @@ const UserInfo = () => {
         <div className="flex items-center justify-between w-10/12 mx-auto bg-[#eeeeee] rounded-2xl px-6">
         <div className="text-center flex items-center">
           <Image
-            className="h-20 w-20 rounded-2xl border-4 border-white mx-auto my-4"
+            className="h-20 w-20 rounded-full border-4 border-white mx-auto my-4"
             src="https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI="
             alt=""
             width={100}
             height={100}
           />
-          <div className="ml-2">
+          <div className="ml-3">
             <p className="text-xl text-gray-700 items-center">
               {"untitled"}
             </p>
@@ -55,9 +55,10 @@ const UserInfo = () => {
             token(s)
           </div>
         </div>
-        <button className="w-[200px] h-12 rounded-lg bg-[#171717] text-white antialiased font-bold hover:bg-indigo-800 px-4">
+        <div></div>
+        {/* <button className="h-10 rounded-lg bg-[#171717] text-white antialiased font-bold hover:bg-indigo-800 px-5">
           Follow
-        </button>
+        </button> */}
       </div>
     );
 };

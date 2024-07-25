@@ -21,16 +21,22 @@ import Image from "next/image";
 import uploadIcon from "../../assets/icons/upload-icon.svg";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useLocalStorageBlog } from "@/hooks/useCreatePost";
+import { usePostController } from "@/hooks/usePostController";
 import { useAccount } from "@starknet-react/core";
 
 // import { useCreatePost } from "@/hooks/useCreatePost";
 
 const ImportPost = () => {
-  const { addPost, getPosts, updatePost, deletePost } = useLocalStorageBlog();
+  const { addPost } = usePostController();
   const [platform, setPlatform] = useState("");
   const [post_url, setPostUrl] = useState("");
   const { address } = useAccount();
+
+  const [open, setOpen] = useState(false);
+
+  function closeModal() {
+    setOpen(false);
+  }
 
   const handleSubmit = async () => {
     try {
@@ -42,17 +48,19 @@ const ImportPost = () => {
       console.log("Post added:", result);
     } catch (error) {
       console.error("Error adding post:", error);
+    } finally {
+      closeModal();
+      // setOpen(false)
     }
   };
   const handlePlatformChange = (value: any) => {
     setPlatform(value);
   };
   return (
-    // Add your JSX code here
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         {" "}
-        <span className="border border-gray-300 px-4 py-1 cursor-pointer rounded-[10px] flex bg-[#171717] text-white">
+        <span className="border border-gray-300 px-4 py-1 cursor-pointer rounded-lg flex bg-[#171717] hover:bg-indigo-800 text-white">
           <Image src={uploadIcon} alt="" />
           <span className="ml-3">Import</span>
         </span>
@@ -99,16 +107,16 @@ const ImportPost = () => {
             />
           </div>
         </div>
-          <Button
-            type="submit"
-            className="w-1/2 mx-auto rounded-[10px]"
-            onClick={() => {
-              handleSubmit();
-              console.log("working");
-            }}
-          >
-            Import
-          </Button>
+        <Button
+          type="submit"
+          className="w-1/2 mx-auto rounded-[10px]"
+          onClick={() => {
+            handleSubmit();
+            console.log("working");
+          }}
+        >
+          Import
+        </Button>
       </DialogContent>
     </Dialog>
   );

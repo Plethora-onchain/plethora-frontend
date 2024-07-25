@@ -22,7 +22,6 @@ export function StarknetProvider({ children }: { children: React.ReactNode }) {
   const chains = [sepolia, mainnet];
   const provider = publicProvider();
 
-  let apiKey = process.env.NEXT_PUBLIC_REDDIO_API_KEY || "";
 
   return (
     // React context that provides access to

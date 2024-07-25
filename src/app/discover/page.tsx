@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import { NavBar } from "@/components/shared/Navbar";
 import PostCard from "@/components/posts/PostsCard";
 import SeacrchBar from "@/components/shared/SearchBar";
-import { useLocalStorageBlog } from "@/hooks/useCreatePost";
+import { usePostController } from "@/hooks/usePostController";
 import { Post } from "@/interfaces/Post";
+import Loading from "@/components/shared/Loading";
 
 function Discover() {
-  const { getPosts } = useLocalStorageBlog();
+  const { getPosts } = usePostController();
   const [posts, setPosts] = useState<Post[]>();
 
   function fetchPosts() {
@@ -45,11 +46,11 @@ function Discover() {
             </span>
           </div>
 
-          <div className="mx-auto grid max-w-7xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
+          <div className="mx-auto grid max-w-7xl  grid-cols-1 gap-6 p-3 md:p-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
           {
            posts && posts?.length> 0 && posts?.map((post) => (
               <PostCard key={post.id} post={post} />
-            )) || <p>Loading...</p>
+            )) || <Loading/>
           }
           </div>
         </div>

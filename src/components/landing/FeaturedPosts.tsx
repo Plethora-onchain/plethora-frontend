@@ -3,11 +3,11 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import PostCard from "../posts/PostsCard";
-import { useLocalStorageBlog } from "@/hooks/useCreatePost";
+import { usePostController } from "@/hooks/usePostController";
 import { Post } from "@/interfaces/Post";
 
 const FeaturedPosts = () => {
-  const { getPosts } = useLocalStorageBlog();
+  const { getPosts } = usePostController();
   const [posts, setPosts] = useState<Post[]>();
 
   function fetchPosts() {

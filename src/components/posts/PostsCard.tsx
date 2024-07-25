@@ -26,8 +26,8 @@ export default function PostCard({ post }: { post: Post }) {
 
   if (post.platform === "youtube") {
     return (
-      <Link href={`/post/${post.id}`}>
-        <Card className="w-[380px]  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+      <Card className="max-w-[380px] md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+        <Link href={`/post/${post.id}`}>
           <Image
             src={videoDetails?.thumbnailUrl || cardImage}
             alt="Blog post cover image"
@@ -45,6 +45,8 @@ export default function PostCard({ post }: { post: Post }) {
               {videoDetails?.description.slice(0, 120) + "..."}
             </p>
           </CardContent>
+        </Link>
+        <Link href="/user/untitled">
           <div className="rounded-b-2xl px-4 bg-gray-200 w-full flex items-center justify-between h-[60px]">
             <div className="flex w-full items-center">
               <Image
@@ -57,22 +59,22 @@ export default function PostCard({ post }: { post: Post }) {
                 height={100}
               />
 
-              <Link href="/user/untitled">
+              <div>
                 <p className="text"> {"untitled"} </p>
                 <p className="text-gray-600 text-xs">@{"untitled"} </p>
-              </Link>
+              </div>
             </div>
             <ArrowRight />
           </div>
-        </Card>
-      </Link>
+        </Link>
+      </Card>
     );
   }
 
   if (post.platform === "hashnode") {
     return (
-      <Link href={`/post/${post.id}`}>
-        <Card className="w-[380px]  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+      <Card className="max-w-[380px] md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+        <Link href={`/post/${post.id}`}>
           <Image
             src={hashnodeDetails?.coverImage || cardImage}
             alt="Blog post cover image"
@@ -90,6 +92,9 @@ export default function PostCard({ post }: { post: Post }) {
               {hashnodeDetails?.brief.slice(0, 150) + "..."}
             </p>
           </CardContent>
+        </Link>
+
+        <Link href="/user/untitled">
           <div className="rounded-b-2xl px-4 bg-gray-200 w-full flex items-center justify-between h-[60px]">
             <div className="flex w-full items-center">
               <Image
@@ -102,21 +107,21 @@ export default function PostCard({ post }: { post: Post }) {
                 height={100}
               />
 
-              <Link href="/user/untitled">
+              <div>
                 <p className="text"> {"untitled"} </p>
                 <p className="text-gray-600 text-xs">@{"untitled"} </p>
-              </Link>
+              </div>
             </div>
             <ArrowRight />
           </div>
-        </Card>
-      </Link>
+        </Link>
+      </Card>
     );
   }
-  if (post.platform === "medium") {
+  if (post.platform === "medium" && mediumArticleDetails) {
     return (
-      <Link href={`/post/${post.id}`}>
-        <Card className="w-[380px]  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+      <Card className="max-w-[380px]  md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+        <Link href={`/post/${post.id}`}>
           <Image
             src={mediumArticleDetails?.thumbnail || cardImage}
             alt="Blog post cover image"
@@ -134,6 +139,8 @@ export default function PostCard({ post }: { post: Post }) {
               {mediumArticleDetails?.description.slice(0, 150) + "..."}
             </p>
           </CardContent>
+        </Link>
+        <Link href="/user/untitled">
           <div className="rounded-b-2xl px-4 bg-gray-200 w-full flex items-center justify-between h-[60px]">
             <div className="flex w-full items-center">
               <Image
@@ -146,39 +153,42 @@ export default function PostCard({ post }: { post: Post }) {
                 height={100}
               />
 
-              <Link href="/user/untitled">
+              <div>
                 <p className="text"> {"untitled"} </p>
                 <p className="text-gray-600 text-xs">@{"untitled"} </p>
-              </Link>
+              </div>
             </div>
             <ArrowRight />
           </div>
-        </Card>
-      </Link>
+        </Link>
+      </Card>
     );
   }
-  return (
-    <Link href={`/post/${post.id}`}>
-      <Card className="w-[380px] md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
-        <Image
-          src={cardImage}
-          alt="Blog post cover image"
-          width={400}
-          height={100}
-          className="rounded-t-2xl object-cover h-[200px] w-full"
-        />
-        <CardContent className="p-6 pt-3 space-y-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            {/* <CalendarDaysIcon className="w-4 h-4" /> */}
-            <span>June 29, 2024</span>
-          </div>
-          <h3 className="text-xl font-bold">The Future of Web Development</h3>
-          <p className="text-muted-foreground h-[100px]">
-            Explore the latest trends and technologies shaping the future of web
-            development. From AI-powered tools to...
-          </p>
-        </CardContent>
-        <div className="rounded-b-2xl px-4 bg-gray-200 w-full flex items-center justify-between h-[60px]">
+  if (post.platform === "custom") {
+    return (
+      <Card className="w-[380px] relative md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+        <Link href={`/post/${post.id}`}>
+          <Image
+            src={cardImage}
+            alt="Blog post cover image"
+            width={400}
+            height={100}
+            className="rounded-t-2xl object-cover h-[200px] w-full"
+          />
+          <CardContent className="p-6 pt-3 space-y-3 mb-6">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              {/* <CalendarDaysIcon className="w-4 h-4" /> */}
+              <span>June 29, 2024</span>
+            </div>
+            <h3 className="text-xl font-bold">The Future of Web Development</h3>
+            <p className="text-muted-foreground h-[100px]">
+              Explore the latest trends and technologies shaping the future of
+              web development. From AI-powered tools to...
+            </p>
+          </CardContent>
+        </Link>
+        <Link href="/user/untitled" className="absolute bottom-0 w-full pt-4">
+          <div className="rounded-b-2xl px-4 bg-gray-200 w-full flex items-center justify-between h-[60px]">
             <div className="flex w-full items-center">
               <Image
                 src={
@@ -190,14 +200,15 @@ export default function PostCard({ post }: { post: Post }) {
                 height={100}
               />
 
-              <Link href="/user/untitled">
+              <div>
                 <p className="text"> {"untitled"} </p>
                 <p className="text-gray-600 text-xs">@{"untitled"} </p>
-              </Link>
+              </div>
             </div>
             <ArrowRight />
           </div>
+        </Link>
       </Card>
-    </Link>
-  );
+    );
+  }
 }

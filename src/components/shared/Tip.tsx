@@ -44,7 +44,7 @@ const Tip = () => {
             }}
           />
         </div>
-        <Button className="mx-auto w-1/2 hover:bg-indigo-800">Tip</Button>
+        <Button className="mx-auto w-1/2 rounded-lg hover:bg-indigo-800">Tip</Button>
       </DialogContent>
     </Dialog>
   );
