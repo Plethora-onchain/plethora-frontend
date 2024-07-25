@@ -10,6 +10,7 @@ import "react-quill/dist/quill.snow.css";
 import { usePostController } from "@/hooks/usePostController";
 import { useAccount } from "@starknet-react/core";
 import { usePostUpload } from "@/hooks/useCustomPosts";
+import Loading from "../shared/Loading";
 
 
 const CreateText = () => {
@@ -82,6 +83,7 @@ const CreateText = () => {
   };
 
   return (
+    <>
     <div className="mb-5">
       {coverImageUrl ? (
         <div className="w-full h-40 px-4 rounded-md cursor-pointer">
@@ -160,6 +162,11 @@ const CreateText = () => {
         {uploading ? "Uploading..." : "Submit Post"}
       </Button>
     </div>
+
+    {
+      uploading ? <Loading/> : ""
+    }
+    </>
   );
 };
 

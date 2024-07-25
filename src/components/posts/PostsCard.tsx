@@ -164,30 +164,30 @@ export default function PostCard({ post }: { post: Post }) {
       </Card>
     );
   }
-if(post.platform === "custom"){
-  return (
-    <Card className="w-[380px] relative md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
-      <Link href={`/post/${post.id}`}>
-        <Image
-          src={cardImage}
-          alt="Blog post cover image"
-          width={400}
-          height={100}
-          className="rounded-t-2xl object-cover h-[200px] w-full"
-        />
-        <CardContent className="p-6 pt-3 space-y-3 mb-6">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            {/* <CalendarDaysIcon className="w-4 h-4" /> */}
-            <span>June 29, 2024</span>
-          </div>
-          <h3 className="text-xl font-bold">The Future of Web Development</h3>
-          <p className="text-muted-foreground h-[100px]">
-            Explore the latest trends and technologies shaping the future of web
-            development. From AI-powered tools to...
-          </p>
-        </CardContent>
-      </Link>
-      <Link href="/user/untitled" className="absolute bottom-0 w-full pt-4">
+  if (post.platform === "custom") {
+    return (
+      <Card className="w-[380px] relative md:max-w-sm hover:shadow-lg transition-shadow duration-300 rounded-2xl cursor-pointer">
+        <Link href={`/post/${post.id}`}>
+          <Image
+            src={cardImage}
+            alt="Blog post cover image"
+            width={400}
+            height={100}
+            className="rounded-t-2xl object-cover h-[200px] w-full"
+          />
+          <CardContent className="p-6 pt-3 space-y-3 mb-6">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              {/* <CalendarDaysIcon className="w-4 h-4" /> */}
+              <span>June 29, 2024</span>
+            </div>
+            <h3 className="text-xl font-bold">The Future of Web Development</h3>
+            <p className="text-muted-foreground h-[100px]">
+              Explore the latest trends and technologies shaping the future of
+              web development. From AI-powered tools to...
+            </p>
+          </CardContent>
+        </Link>
+        <Link href="/user/untitled" className="absolute bottom-0 w-full pt-4">
           <div className="rounded-b-2xl px-4 bg-gray-200 w-full flex items-center justify-between h-[60px]">
             <div className="flex w-full items-center">
               <Image
@@ -208,7 +208,7 @@ if(post.platform === "custom"){
             <ArrowRight />
           </div>
         </Link>
-    </Card>
-  );
-}
+      </Card>
+    );
+  }
 }

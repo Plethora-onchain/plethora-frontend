@@ -5,6 +5,7 @@ import PostCard from "@/components/posts/PostsCard";
 import SeacrchBar from "@/components/shared/SearchBar";
 import { usePostController } from "@/hooks/usePostController";
 import { Post } from "@/interfaces/Post";
+import Loading from "@/components/shared/Loading";
 
 function Discover() {
   const { getPosts } = usePostController();
@@ -49,7 +50,7 @@ function Discover() {
           {
            posts && posts?.length> 0 && posts?.map((post) => (
               <PostCard key={post.id} post={post} />
-            )) || <p>Loading...</p>
+            )) || <Loading/>
           }
           </div>
         </div>
