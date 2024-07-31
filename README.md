@@ -1,4 +1,6 @@
 # PLETHORA
+![image](https://github.com/user-attachments/assets/91518abb-09a2-405a-b44a-096b174c8d5a)
+
 ## OVERVIEW
 Plethora is a content creation platform that empowers creators to monetize their passion and grow their audience. It allows content creators to receive tips in stablecoins for their work, providing a direct way to earn from their content.
 
