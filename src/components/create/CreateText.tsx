@@ -66,7 +66,7 @@ const CreateText = () => {
       return;
     }
     try {
-      setPost({ id: Date.now().toString(), title, content });
+      setPost({ title, content });
       setUploading(true);
     } catch (error) {
       console.error("Error starting upload:", error);
