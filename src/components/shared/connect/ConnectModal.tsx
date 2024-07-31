@@ -24,7 +24,8 @@ export default function ConnectModal() {
   const [error, setError] = React.useState("");
   const { connect, connectors } = useConnect();
   const { account } = useAccount();
-  const { createProfile, isCreatingProfile, profile } = useProfile();
+  const { createProfile, isCreatingProfile, profile, userExists } =
+    useProfile();
 
   const handleConnect = async (connector: Connector) => {
     if (!connector.available()) return;
@@ -53,7 +54,7 @@ export default function ConnectModal() {
         aria-describedby="dialog-description"
       >
         <div>
-          {account && !profile ? (
+          {account && !userExists ? (
             <Button
               onClick={createProfile}
               disabled={isCreatingProfile}

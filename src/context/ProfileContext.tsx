@@ -23,6 +23,8 @@ interface ProfileContextType {
   error: string | null;
   createProfile: () => Promise<void>;
   getProfile: () => Promise<void>;
+  userExists: boolean;
+  checkUserExists: () => Promise<boolean>;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -35,38 +37,68 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { account, address } = useAccount();
+  const [userExists, setUserExists] = useState(false);
+
+  const checkUserExists = useCallback(async (): Promise<boolean> => {
+    if (address) {
+      try {
+        const balance = await getNFTContract(account).balanceOf(address);
+        const exists = Number(balance) > 0;
+        setUserExists(exists);
+        return exists;
+      } catch (error) {
+        console.error("Error checking user existence:", error);
+        setUserExists(false);
+        return false;
+      }
+    }
+    return false;
+  }, [account, address]);
 
   const getProfile = useCallback(async () => {
+    const exists = await checkUserExists();
     if (!account || !address) {
       setProfile(null);
       return;
     }
-    const contract = getHubContract(account);
-    const NFTContract = getNFTContract(account);
-    const tokenbound = new TokenboundClient({
-      account: account,
-      registryAddress:
-        "0x4101d3fa033024654083dd982273a300cb019b8cb96dd829267a4daf59f7b7e",
-      implementationAddress: ImplementationAddress,
-      jsonRPC: `https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/mUiJxXhqBR87Lg7O8pmNJWgFJQ0DbcqG`,
-    });
+
     setIsLoading(true);
     setError(null);
+
     try {
+      const exists = await checkUserExists();
+      if (!exists) {
+        setProfile(null);
+        return;
+      }
+
+      const contract = getHubContract(account);
+      const NFTContract = getNFTContract(account);
+      const tokenbound = new TokenboundClient({
+        account: account,
+        registryAddress:
+          "0x4101d3fa033024654083dd982273a300cb019b8cb96dd829267a4daf59f7b7e",
+        implementationAddress: ImplementationAddress,
+        jsonRPC: `https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/mUiJxXhqBR87Lg7O8pmNJWgFJQ0DbcqG`,
+      });
+
       const getNFTID = await NFTContract.get_user_token_id(address);
+      // console.log(getNFTID);
+      
       const nftAddress = process.env.NEXT_PUBLIC_PLETHORA_NFT_ADDRESS;
       if (!nftAddress) {
         throw new Error("NFT address not found");
       }
       const profile_address = await tokenbound.getAccount({
-        tokenContract:
-          "0x00f910cee41eae0dd2dc412838ba72717d2a1702a833c5a312acc6c38742329a",
+        tokenContract:nftAddress,
         tokenId: Number(getNFTID).toString(),
+        salt: "1"
       });
-      // console.log(profile_address);
+      console.log("profile_address",  num.toHex(profile_address));
       const fetchedProfile = await contract.get_profile(
         num.toHex(profile_address),
       );
+      console.log("fetchedProfile", fetchedProfile);
       const remappedProfile = {
         profile_address: num.toHex(fetchedProfile.profile_address),
         profile_owner: num.toHex(fetchedProfile.profile_owner),
@@ -80,7 +112,7 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [account, address]);
+  }, [account, address, checkUserExists]);
 
   const createProfile = useCallback(async () => {
     if (!account) {
@@ -100,9 +132,13 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
         RegistryHash,
         ImplementationAddress,
         1,
-      );
-      await transaction.wait();
-      await getProfile();
+      )
+      console.log(transaction);
+      
+      // await transaction.wait();
+   if(transaction){
+    await getProfile();
+   }
     } catch (error) {
       console.error("Error creating profile:", error);
       setError("Failed to create profile. Please try again.");
@@ -115,7 +151,6 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
     getProfile();
   }, [getProfile]);
 
-  // Return the context provider with the value
   return (
     <ProfileContext.Provider
       value={{
@@ -125,6 +160,8 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
         error,
         createProfile,
         getProfile,
+        userExists,
+        checkUserExists,
       }}
     >
       {children}

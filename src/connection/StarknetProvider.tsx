@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { sepolia, mainnet } from "@starknet-react/chains";
+import { sepolia, mainnet, Chain } from "@starknet-react/chains";
 import {
   StarknetConfig,
   argent,
   braavos,
   useInjectedConnectors,
-  publicProvider,
+  alchemyProvider,
+  jsonRpcProvider
 } from "@starknet-react/core";
-
 
 export function StarknetProvider({ children }: { children: React.ReactNode }) {
   const { connectors } = useInjectedConnectors({
@@ -19,9 +19,14 @@ export function StarknetProvider({ children }: { children: React.ReactNode }) {
     // Sort connectors alphabetically by their id.
     order: "alphabetical",
   });
-  const chains = [sepolia, mainnet];
-  const provider = publicProvider();
+  const chains = [sepolia];
 
+  function rpc(chain: Chain) {
+    return {
+      nodeUrl: process.env.NEXT_PUBLIC_RPC_PROVIDER
+    }
+  }
+  const provider = jsonRpcProvider({ rpc });
 
   return (
     // React context that provides access to

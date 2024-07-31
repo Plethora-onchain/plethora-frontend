@@ -23,6 +23,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { usePostController } from "@/hooks/usePostController";
 import { useAccount } from "@starknet-react/core";
+import { useProfile } from "@/context/ProfileContext";
+import { cairo } from "starknet";
 
 // import { useCreatePost } from "@/hooks/useCreatePost";
 
@@ -31,7 +33,7 @@ const ImportPost = () => {
   const [platform, setPlatform] = useState("");
   const [post_url, setPostUrl] = useState("");
   const { address } = useAccount();
-
+  const { profile } = useProfile();
   const [open, setOpen] = useState(false);
 
   function closeModal() {
@@ -40,16 +42,19 @@ const ImportPost = () => {
 
   const handleSubmit = async () => {
     try {
-      const result = await addPost({
+      const PostParams = {
+        title: " ",
+        content: " ",
         post_url: post_url,
+        img_url: " ",
         platform: platform,
-        creator_address: address,
-      });
+      };
+      const result = await addPost(PostParams);
       console.log("Post added:", result);
     } catch (error) {
       console.error("Error adding post:", error);
     } finally {
-      closeModal();
+      // closeModal();
       // setOpen(false)
     }
   };
@@ -112,7 +117,7 @@ const ImportPost = () => {
           className="w-1/2 mx-auto rounded-[10px]"
           onClick={() => {
             handleSubmit();
-            console.log("working");
+            // console.log("working");
           }}
         >
           Import
