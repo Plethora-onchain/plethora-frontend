@@ -1,578 +1,454 @@
 [
-    {
-      "name": "ProfileImpl",
-      "type": "impl",
-      "interface_name": "plethora::interfaces::IProfile::IProfile"
-    },
-    {
-      "name": "core::byte_array::ByteArray",
-      "type": "struct",
-      "members": [
-        {
-          "name": "data",
-          "type": "core::array::Array::<core::bytes_31::bytes31>"
-        },
-        {
-          "name": "pending_word",
-          "type": "core::felt252"
-        },
-        {
-          "name": "pending_word_len",
-          "type": "core::integer::u32"
-        }
-      ]
-    },
-    {
-      "name": "core::integer::u256",
-      "type": "struct",
-      "members": [
-        {
-          "name": "low",
-          "type": "core::integer::u128"
-        },
-        {
-          "name": "high",
-          "type": "core::integer::u128"
-        }
-      ]
-    },
-    {
-      "name": "plethora::constants::types::Profile",
-      "type": "struct",
-      "members": [
-        {
-          "name": "profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "name": "profile_owner",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "name": "content_count",
-          "type": "core::integer::u256"
-        },
-        {
-          "name": "metadata_URI",
-          "type": "core::byte_array::ByteArray"
-        }
-      ]
-    },
-    {
-      "name": "plethora::interfaces::IProfile::IProfile",
-      "type": "interface",
-      "items": [
-        {
-          "name": "initializer",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "plethora_nft_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "outputs": [],
-          "state_mutability": "external"
-        },
-        {
-          "name": "create_profile",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "plethoranft_contract_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            },
-            {
-              "name": "registry_hash",
-              "type": "core::felt252"
-            },
-            {
-              "name": "implementation_hash",
-              "type": "core::felt252"
-            },
-            {
-              "name": "salt",
-              "type": "core::felt252"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "state_mutability": "external"
-        },
-        {
-          "name": "set_profile_metadata_uri",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            },
-            {
-              "name": "metadata_uri",
-              "type": "core::byte_array::ByteArray"
-            }
-          ],
-          "outputs": [],
-          "state_mutability": "external"
-        },
-        {
-          "name": "increment_content_count",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::integer::u256"
-            }
-          ],
-          "state_mutability": "external"
-        },
-        {
-          "name": "get_profile_metadata",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::byte_array::ByteArray"
-            }
-          ],
-          "state_mutability": "view"
-        },
-        {
-          "name": "get_profile",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "plethora::constants::types::Profile"
-            }
-          ],
-          "state_mutability": "view"
-        },
-        {
-          "name": "get_user_content_count",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::integer::u256"
-            }
-          ],
-          "state_mutability": "view"
-        }
-      ]
-    },
-    {
-      "name": "ContentImpl",
-      "type": "impl",
-      "interface_name": "plethora::interfaces::IContent::IPlethoraContents"
-    },
-    {
-      "name": "plethora::constants::types::PostParams",
-      "type": "struct",
-      "members": [
-        {
-          "name": "content_URI",
-          "type": "core::byte_array::ByteArray"
-        },
-        {
-          "name": "profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        }
-      ]
-    },
-    {
-      "name": "plethora::constants::types::ContentType",
-      "type": "enum",
-      "variants": [
-        {
-          "name": "Nonexistent",
-          "type": "()"
-        },
-        {
-          "name": "Post",
-          "type": "()"
-        },
-        {
-          "name": "Comment",
-          "type": "()"
-        }
-      ]
-    },
-    {
-      "name": "plethora::constants::types::CommentParams",
-      "type": "struct",
-      "members": [
-        {
-          "name": "profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "name": "content_URI",
-          "type": "core::byte_array::ByteArray"
-        },
-        {
-          "name": "pointed_profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "name": "pointed_content_id",
-          "type": "core::integer::u256"
-        },
-        {
-          "name": "reference_content_type",
-          "type": "plethora::constants::types::ContentType"
-        }
-      ]
-    },
-    {
-      "name": "plethora::constants::types::Content",
-      "type": "struct",
-      "members": [
-        {
-          "name": "pointed_profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "name": "pointed_content_id",
-          "type": "core::integer::u256"
-        },
-        {
-          "name": "content_URI",
-          "type": "core::byte_array::ByteArray"
-        },
-        {
-          "name": "content_Type",
-          "type": "plethora::constants::types::ContentType"
-        },
-        {
-          "name": "root_profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "name": "root_content_id",
-          "type": "core::integer::u256"
-        }
-      ]
-    },
-    {
-      "name": "plethora::interfaces::IContent::IPlethoraContents",
-      "type": "interface",
-      "items": [
-        {
-          "name": "initialize",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "hub_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            }
-          ],
-          "outputs": [],
-          "state_mutability": "external"
-        },
-        {
-          "name": "post",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "post_params",
-              "type": "plethora::constants::types::PostParams"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::integer::u256"
-            }
-          ],
-          "state_mutability": "external"
-        },
-        {
-          "name": "comment",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "comment_params",
-              "type": "plethora::constants::types::CommentParams"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::integer::u256"
-            }
-          ],
-          "state_mutability": "external"
-        },
-        {
-          "name": "get_content",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            },
-            {
-              "name": "content_id_assigned",
-              "type": "core::integer::u256"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "plethora::constants::types::Content"
-            }
-          ],
-          "state_mutability": "view"
-        },
-        {
-          "name": "get_content_type",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            },
-            {
-              "name": "content_id_assigned",
-              "type": "core::integer::u256"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "plethora::constants::types::ContentType"
-            }
-          ],
-          "state_mutability": "view"
-        },
-        {
-          "name": "get_content_uri",
-          "type": "function",
-          "inputs": [
-            {
-              "name": "profile_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            },
-            {
-              "name": "content_id",
-              "type": "core::integer::u256"
-            }
-          ],
-          "outputs": [
-            {
-              "type": "core::byte_array::ByteArray"
-            }
-          ],
-          "state_mutability": "view"
-        }
-      ]
-    },
-    {
-      "name": "constructor",
-      "type": "constructor",
-      "inputs": [
-        {
-          "name": "plethoranft_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        }
-      ]
-    },
-    {
-      "name": "set_hub_address",
-      "type": "function",
-      "inputs": [
-        {
-          "name": "hub_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        }
-      ],
-      "outputs": [],
-      "state_mutability": "external"
-    },
-    {
-      "name": "mint_nft",
-      "type": "function",
-      "inputs": [
-        {
-          "name": "user_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        }
-      ],
-      "outputs": [],
-      "state_mutability": "external"
-    },
-    {
-      "name": "get_last_minted_id",
-      "type": "function",
-      "inputs": [],
-      "outputs": [
-        {
-          "type": "core::integer::u256"
-        }
-      ],
-      "state_mutability": "view"
-    },
-    {
-      "name": "get_user_token_id",
-      "type": "function",
-      "inputs": [
-        {
-          "name": "user",
-          "type": "core::starknet::contract_address::ContractAddress"
-        }
-      ],
-      "outputs": [
-        {
-          "type": "core::integer::u256"
-        }
-      ],
-      "state_mutability": "view"
-    },
-    {
-      "kind": "struct",
-      "name": "plethora::profile::profile::ProfileComponent::CreatedProfile",
-      "type": "event",
-      "members": [
-        {
-          "kind": "key",
-          "name": "owner",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "kind": "key",
-          "name": "profile_address",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "kind": "data",
-          "name": "token_id",
-          "type": "core::integer::u256"
-        },
-        {
-          "kind": "data",
-          "name": "timestamp",
-          "type": "core::integer::u64"
-        }
-      ]
-    },
-    {
-      "kind": "enum",
-      "name": "plethora::profile::profile::ProfileComponent::Event",
-      "type": "event",
-      "variants": [
-        {
-          "kind": "nested",
-          "name": "CreatedProfile",
-          "type": "plethora::profile::profile::ProfileComponent::CreatedProfile"
-        }
-      ]
-    },
-    {
-      "kind": "struct",
-      "name": "plethora::content::content::ContentComponent::Post",
-      "type": "event",
-      "members": [
-        {
-          "kind": "data",
-          "name": "post",
-          "type": "plethora::constants::types::PostParams"
-        },
-        {
-          "kind": "data",
-          "name": "content_id",
-          "type": "core::integer::u256"
-        },
-        {
-          "kind": "data",
-          "name": "transaction_executor",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "kind": "data",
-          "name": "block_timestamp",
-          "type": "core::integer::u64"
-        }
-      ]
-    },
-    {
-      "kind": "struct",
-      "name": "plethora::content::content::ContentComponent::CommentCreated",
-      "type": "event",
-      "members": [
-        {
-          "kind": "data",
-          "name": "commentParams",
-          "type": "plethora::constants::types::CommentParams"
-        },
-        {
-          "kind": "data",
-          "name": "content_id",
-          "type": "core::integer::u256"
-        },
-        {
-          "kind": "data",
-          "name": "transaction_executor",
-          "type": "core::starknet::contract_address::ContractAddress"
-        },
-        {
-          "kind": "data",
-          "name": "block_timestamp",
-          "type": "core::integer::u64"
-        }
-      ]
-    },
-    {
-      "kind": "enum",
-      "name": "plethora::content::content::ContentComponent::Event",
-      "type": "event",
-      "variants": [
-        {
-          "kind": "nested",
-          "name": "Post",
-          "type": "plethora::content::content::ContentComponent::Post"
-        },
-        {
-          "kind": "nested",
-          "name": "CommentCreated",
-          "type": "plethora::content::content::ContentComponent::CommentCreated"
-        }
-      ]
-    },
-    {
-      "kind": "enum",
-      "name": "plethora::hub::hub::Hub::Event",
-      "type": "event",
-      "variants": [
-        {
-          "kind": "flat",
-          "name": "ProfileEvent",
-          "type": "plethora::profile::profile::ProfileComponent::Event"
-        },
-        {
-          "kind": "flat",
-          "name": "ContentEvent",
-          "type": "plethora::content::content::ContentComponent::Event"
-        }
-      ]
-    }
-  ]
+  {
+    "name": "ProfileImpl",
+    "type": "impl",
+    "interface_name": "plethora::interfaces::IProfile::IProfile"
+  },
+  {
+    "name": "core::byte_array::ByteArray",
+    "type": "struct",
+    "members": [
+      {
+        "name": "data",
+        "type": "core::array::Array::<core::bytes_31::bytes31>"
+      },
+      {
+        "name": "pending_word",
+        "type": "core::felt252"
+      },
+      {
+        "name": "pending_word_len",
+        "type": "core::integer::u32"
+      }
+    ]
+  },
+  {
+    "name": "core::integer::u256",
+    "type": "struct",
+    "members": [
+      {
+        "name": "low",
+        "type": "core::integer::u128"
+      },
+      {
+        "name": "high",
+        "type": "core::integer::u128"
+      }
+    ]
+  },
+  {
+    "name": "plethora::constants::types::Profile",
+    "type": "struct",
+    "members": [
+      {
+        "name": "profile_address",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "name": "profile_owner",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "name": "content_count",
+        "type": "core::integer::u256"
+      },
+      {
+        "name": "metadata_URI",
+        "type": "core::byte_array::ByteArray"
+      }
+    ]
+  },
+  {
+    "name": "plethora::interfaces::IProfile::IProfile",
+    "type": "interface",
+    "items": [
+      {
+        "name": "initializer",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "plethora_nft_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "name": "create_profile",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "plethoranft_contract_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "registry_hash",
+            "type": "core::felt252"
+          },
+          {
+            "name": "implementation_hash",
+            "type": "core::felt252"
+          },
+          {
+            "name": "salt",
+            "type": "core::felt252"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "state_mutability": "external"
+      },
+      {
+        "name": "set_profile_metadata_uri",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "profile_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "metadata_uri",
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "name": "increment_content_count",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "profile_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::integer::u256"
+          }
+        ],
+        "state_mutability": "external"
+      },
+      {
+        "name": "get_profile_metadata",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "profile_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "name": "get_profile",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "profile_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "plethora::constants::types::Profile"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "name": "get_user_content_count",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "profile_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::integer::u256"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "name": "ContentImpl",
+    "type": "impl",
+    "interface_name": "plethora::interfaces::IContent::IPlethoraContents"
+  },
+  {
+    "name": "plethora::constants::types::Post",
+    "type": "struct",
+    "members": [
+      {
+        "name": "id",
+        "type": "core::integer::u32"
+      },
+      {
+        "name": "title",
+        "type": "core::felt252"
+      },
+      {
+        "name": "content",
+        "type": "core::felt252"
+      },
+      {
+        "name": "createdAt",
+        "type": "core::integer::u64"
+      },
+      {
+        "name": "post_url",
+        "type": "core::felt252"
+      },
+      {
+        "name": "img_url",
+        "type": "core::felt252"
+      },
+      {
+        "name": "platform",
+        "type": "core::felt252"
+      },
+      {
+        "name": "creator_address",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
+  },
+  {
+    "name": "plethora::interfaces::IContent::IPlethoraContents",
+    "type": "interface",
+    "items": [
+      {
+        "name": "initialize",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "hub_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "name": "post",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "core::felt252"
+          },
+          {
+            "name": "content",
+            "type": "core::felt252"
+          },
+          {
+            "name": "post_url",
+            "type": "core::felt252"
+          },
+          {
+            "name": "img_url",
+            "type": "core::felt252"
+          },
+          {
+            "name": "platform",
+            "type": "core::felt252"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "name": "get_post",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "post_id",
+            "type": "core::integer::u32"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "plethora::constants::types::Post"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "name": "get_all_posts",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::array::Array::<plethora::constants::types::Post>"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "name": "constructor",
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "plethoranft_address",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
+  },
+  {
+    "name": "set_hub_address",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "hub_address",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ],
+    "outputs": [],
+    "state_mutability": "external"
+  },
+  {
+    "name": "mint_nft",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "user_address",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ],
+    "outputs": [],
+    "state_mutability": "external"
+  },
+  {
+    "name": "get_last_minted_id",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "core::integer::u256"
+      }
+    ],
+    "state_mutability": "view"
+  },
+  {
+    "name": "get_user_token_id",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "core::integer::u256"
+      }
+    ],
+    "state_mutability": "view"
+  },
+  {
+    "kind": "struct",
+    "name": "plethora::profile::profile::ProfileComponent::CreatedProfile",
+    "type": "event",
+    "members": [
+      {
+        "kind": "key",
+        "name": "owner",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "kind": "key",
+        "name": "profile_address",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "kind": "data",
+        "name": "token_id",
+        "type": "core::integer::u256"
+      },
+      {
+        "kind": "data",
+        "name": "timestamp",
+        "type": "core::integer::u64"
+      }
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "plethora::profile::profile::ProfileComponent::Event",
+    "type": "event",
+    "variants": [
+      {
+        "kind": "nested",
+        "name": "CreatedProfile",
+        "type": "plethora::profile::profile::ProfileComponent::CreatedProfile"
+      }
+    ]
+  },
+  {
+    "kind": "struct",
+    "name": "plethora::content::content::ContentComponent::PostCreated",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "post_id",
+        "type": "core::integer::u32"
+      },
+      {
+        "kind": "data",
+        "name": "transaction_executor",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "kind": "data",
+        "name": "block_timestamp",
+        "type": "core::integer::u64"
+      }
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "plethora::content::content::ContentComponent::Event",
+    "type": "event",
+    "variants": [
+      {
+        "kind": "nested",
+        "name": "PostCreated",
+        "type": "plethora::content::content::ContentComponent::PostCreated"
+      }
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "plethora::hub::hub::Hub::Event",
+    "type": "event",
+    "variants": [
+      {
+        "kind": "flat",
+        "name": "ProfileEvent",
+        "type": "plethora::profile::profile::ProfileComponent::Event"
+      },
+      {
+        "kind": "flat",
+        "name": "ContentEvent",
+        "type": "plethora::content::content::ContentComponent::Event"
+      }
+    ]
+  }
+]

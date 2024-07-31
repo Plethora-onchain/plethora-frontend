@@ -19,12 +19,13 @@ const ConnectWallet = () => {
   const { address, account } = useAccount();
   const { disconnect } = useDisconnect();
   const { profile, getProfile } = useProfile();
+  // console.log(profile);
 
-  useEffect(() => {
-    if (account) {
-      getProfile();
-    }
-  }, [account]);
+  // useEffect(() => {
+  //   if (account) {
+  //     getProfile();
+  //   }
+  // }, [account]);
 
   return (
     <div className="justify-between  flex flex-row px-4 p-2">

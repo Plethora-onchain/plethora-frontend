@@ -9,20 +9,7 @@ import Loading from "@/components/shared/Loading";
 
 function Discover() {
   const { getPosts } = usePostController();
-  const [posts, setPosts] = useState<Post[]>();
-
-  function fetchPosts() {
-    getPosts()
-      .then((response) => {
-        setPosts(response);
-      })
-      .catch((error) => {
-        console.error("Error getting posts:", error);
-      });
-  }
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  const fetched_posts = getPosts();
 
   return (
     <div>
@@ -47,11 +34,10 @@ function Discover() {
           </div>
 
           <div className="mx-auto grid max-w-7xl  grid-cols-1 gap-6 p-3 md:p-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
-          {
-           posts && posts?.length> 0 && posts?.map((post) => (
-              <PostCard key={post.id} post={post} />
-            )) || <Loading/>
-          }
+            {(fetched_posts &&
+              fetched_posts?.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))) || <Loading />}
           </div>
         </div>
       </div>
